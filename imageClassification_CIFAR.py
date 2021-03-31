@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # check whether GPU is present.
-# "GPU" holds the  to tranfer the  
+# "GPU" holds the info to tranfer the variable to GPU  
 if torch.cuda.is_available():
     GPU = torch.device('cuda:0')
 
