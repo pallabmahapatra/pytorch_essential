@@ -5,8 +5,6 @@
 4. model is saved i the hard disk
 
 '''
-
-
 import torch
 import torch.nn as nn
 import numpy as np
@@ -25,8 +23,6 @@ Y_numpy = Y_numpy.astype(np.float32)
 
 x = torch.from_numpy(X_numpy).to(device=gpu)
 y = torch.from_numpy(Y_numpy).to(device=gpu)
-
-
 
 y = y.view(x.shape[0],-1)
 
