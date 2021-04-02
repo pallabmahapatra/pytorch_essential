@@ -4,7 +4,8 @@ import numpy as np
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-import seaborn as sns
+
+import pandas as pd
 
 if torch.cuda.is_available():
     GPU = torch.device('cuda:0')
@@ -31,7 +32,7 @@ y_train = torch.from_numpy(y_train).to(GPU)
 # hyper parameters
 
 NUM_INPUT_FEATURES = X_test.shape[1]
-EPOCHS = 5
+EPOCHS = 5000
 LEARNING_RATE = 0.01
 
 class LinearRegresssion(nn.Module):
@@ -57,8 +58,8 @@ for epoch in range(EPOCHS):
     optimizer.step()
     optimizer.zero_grad()
 
-    # if (epoch+1) % 10 == 0:
-    #     print(f'epoch: {epoch+1}, loss = {loss.item():.4f}')
+    if (epoch+1) % 100 == 0:
+        print(f'epoch: {epoch+1}, loss = {loss.item():.4f}')
 
 # model evalution
 
@@ -68,10 +69,15 @@ with torch.no_grad():
 
 #convert pytorch tensor to numpy array
 
-X_test = X_test.to('cpu').numpy()
-
-y_predicted = y_predicted.to('cpu').numpy()
+y_train = y_train.to('cpu').numpy()
 y_test = y_test.to('cpu').numpy()
+y_predicted = y_predicted.to('cpu').numpy()
 
-sns.scatterplot(x=y_test,y=y_predicted,index=[0])
-plt.plot()
+# converting 2-d array into 1-d
+y_predicted = np.ravel(y_predicted)
+y_test = np.ravel(y_test)
+y_train = np.ravel(y_train)
+
+plt.plot(y_test)
+plt.plot(y_predicted)
+plt.show()
