@@ -4,8 +4,22 @@ import numpy as np
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-
 import pandas as pd
+import logging
+
+# setting the logging level
+
+logger = logging.getLogger(__name__) 
+logger.setLevel(logging.INFO)
+
+formatter = logging.Formatter('%(asctime)s: %(lineno)d: %(message)s')
+
+file_handler = logging.FileHandler('Regression.log')
+file_handler.setFormatter(formatter)
+
+logger.addHandler(file_handler)
+
+
 
 if torch.cuda.is_available():
     GPU = torch.device('cuda:0')
