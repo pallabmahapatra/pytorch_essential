@@ -2,12 +2,7 @@
 1. Logistic Regression using class
 2. storing the hyperparameters in log files
 
-
-
 '''
-
-
-
 import torch
 import torch.nn as nn
 import numpy as np
